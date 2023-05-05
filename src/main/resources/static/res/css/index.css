@@ -1,0 +1,123 @@
+html{
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+}
+body{
+    height: 100%;
+    width: 100%;
+}
+.header{
+    box-sizing: border-box;
+    background-color: white;
+    height: 120px;
+    line-height: 120px;
+    position: fixed;
+    font-size: 16px;
+    z-index: 999;
+    width: 100%;
+    border-bottom:1px solid #dadada;
+}
+.header .nav{
+    display:flex;
+    height:100%;
+}
+.header .nav a{
+    display: inline-block;
+    margin:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 50px;
+    position:relative;
+}
+.header .nav a>span{
+    position:absolute;
+}
+.header .nav a>span:hover{
+    color:#130c1e;
+    transform:scale(1.3);
+}
+.layui-carousel img{
+   width: 100%;
+}
+.details-content .article-cont>p{
+    text-indent: 2em;
+}
+.details-content .paragraph>p{
+    padding: 0;
+    text-indent: 0em;
+    font-size: 0.8rem;
+    line-height: 2;
+}
+.details-content .paragraph>p:first-letter{
+    color:red;
+    float: left;
+    font-size: 2rem;
+}
+.layui-btn{
+    background: transparent;
+}
+
+.layui-btn:hover{
+    border:1px solid rgb(150 0 0);
+}
+
+.content .cont .list-item .item .item-cont{
+    border-bottom: 1px dashed rgb(150,0,0);
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 530px){
+    .layui-carousel{
+        display: none!important;
+    }
+    .banner{
+        height: 82vh;
+        width: 80vh;
+        background: url(../img/2.webp) no-repeat center;
+        background-size: cover;
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .menu:before, .menu:after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 6px;
+        background: gray !important;
+        border-radius: 8px;
+        position: absolute;
+        left: 0;
+        -webkit-transition: all 0.15s ease-in-out;
+        transition: all 0.15s ease-in-out;
+    }
+
+    .menu:before {
+        top: 0px;
+        box-shadow: 0 34px gray;
+    }
+    .header .header-down-nav{
+        background-color: white!important;
+        border-top: 1px solid gray;
+    }
+    .header .header-down-nav a{
+        color: black;
+        text-align: center;
+        font-size: 1rem !important;
+        font-family: fangsong;
+        font-weight: bold;
+    }
+    .header .header-down-nav a:hover{
+        border-bottom:1px #0000FF;
+        color:black!important;
+    }
+    .layui-col-xs12{
+        width: 100% !important;
+    }
+    .header .nav, .header .welcome-text{
+        display: none !important;
+    }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>在线心理咨询服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../res/layui/css/layui.css" th:href="@{/res/layui/css/layui.css}">
+    <link rel="stylesheet" type="text/css" href="../res/css/main.css" th:href="@{/res/css/main.css}">
+    <link rel="stylesheet" type="text/css" href="../res/css/index.css" th:href="@{/res/css/index.css}">
+    <!--加载meta IE兼容文件-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        @media screen and (max-width: 500px){
+            .layui-col-xs12{
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<!--引入公告模块-->
+<div th:replace="client/html/commons/bar::topbar"></div>
+<div style="height: 120px;width: 100%"></div>
+<div class="content">
+    <div class="cont w1000">
+        <div class="list-item">
+            <div class="item">
+                <div class="layui-fluid">
+                    <div class="layui-row">
+                        <div class="layui-col-xs12 layui-col-sm8 layui-col-md7" style="width: 80%">
+                            <div class="item-cont" th:each="noticeList:${noticeList}">
+                                <h3 th:text="${noticeList.title}" style="margin: 0;padding: 15px;font-family: fangsong;font-weight: bold;padding: 0 0 0 10px;border-left: 10px solid;">
+                                    <button class="layui-btn layui-btn-danger new-icon">new</button>
+                                </h3>
+                                <p>审核人:<span style="color: red" th:text="${noticeList.userOp}"></span></p>
+                                <p th:text="${noticeList.content}"
+                                   style="display:-webkit-box; -webkit-line-clamp: 3行数;-webkit-box-orient: vertical;
+                                overflow: hidden;">
+                                </p>
+                                <a href="" th:href="@{/notice/get?id=}+${noticeList.id}">
+                                  <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="width:100px;margin: 15px 0"><i class="layui-icon"></i></button>
+                                </a>
+                            </div>
+                            <br/>
+                            <p style="text-align: center">
+                                <a style="font-size: 18px;"
+                                   th:href="@{/noticeClientUi/list?page=}+${infoNotice.prePage}"><button type="button" class="layui-btn"  style="background: rgb(150 0 0);"><i class="layui-icon layui-icon-prev"></i></button></a>
+                                <a
+                                    style="font-size: 18px"
+                                    th:href="@{/noticeClientUi/list?page=}+${infoNotice.nextPage}"><button type="button" class="layui-btn"  style="background: rgb(150 0 0);"><i class="layui-icon layui-icon-next"></i></button></a>
+                                <span style="font-size: 18px"> - 总数：[[${infoNotice.total}]] 条 - 当前页:[[${infoNotice.pageNum}]]页</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        <div id="demo" style="text-align: center;"></div>-->
+    </div>
+</div>
+<script type="text/javascript" src="../res/layui/layui.js" th:src="@{/res/layui/layui.js}"></script>
+<script type="text/javascript" src="/webjars/jquery/3.3.1/jquery.min.js"
+        th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+<script type="text/javascript">
+    layui.config({
+        base: '../res/js/util/'
+    }).use(['element', 'laypage', 'form', 'layer', 'menu'], function () {
+        element = layui.element, laypage = layui.laypage, form = layui.form, layer = layui.layer, menu = layui.menu;
+
+    });
+    $(".go-icon").mouseover(function(){
+        $(this).css({backgroundColor:"gray",opcity:"0.6",width:"70px"})
+    })
+    $(".go-icon").mouseout(function(){
+        $(this).css({backgroundColor:"white",opcity:"1",width:"33px"})
+    })
+</script>
+</body>
+</html>

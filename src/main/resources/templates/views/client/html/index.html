@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>大学生心理健康测试平台</title>
+    <link rel="stylesheet" type="text/css" href="../res/layui/css/layui.css" th:href="@{/res/layui/css/layui.css}">
+    <link rel="stylesheet" type="text/css" href="../res/css/main.css" th:href="@{/res/css/main.css}">
+    <link rel="stylesheet" type="text/css" href="../res/css/index.css" th:href="@{/res/css/index.css}">
+    <!--加载meta IE兼容文件-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!--引入公告模块-->
+<div th:replace="client/html/commons/bar::topbar"></div>
+<div style="height: 120px;width: 100%"></div>
+<div class="banner" style="display: none">
+    <div class="cont w1000">
+        <div class="title">
+            <h4>大学生心理健康<br/>测试平台</h4><br/>
+            <h5>Online psychological counseling service platform</h5>
+        </div>
+    </div>
+</div>
+<div class="layui-carousel" id="test1">
+    <div carousel-item>
+        <div class="item1">
+            <img th:src="@{/res/img/1.png}"/>
+        </div>
+        <div class="item2">
+            <img th:src="@{/res/img/2.png}"/>
+        </div>
+       <div class="item3">
+           <img th:src="@{/res/img/3.png}"/>
+       </div>
+    </div>
+</div>
+<script type="text/javascript" src="../res/layui/layui.js" th:src="@{/res/layui/layui.js}"></script>
+<script type="text/javascript">
+    layui.use('carousel', function(){
+        let a=document.body.clientHeight-120;
+        let b =document.querySelector(".layui-carousel");
+        let c=document.querySelectorAll(".layui-carousel img")
+        for(let i=0;i<c.length;i++){
+            c[i].style.height=a+"px";
+        }
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test1'
+            ,width: '100%' //设置容器宽度
+            ,height:`${a}px`
+            ,arrow: 'hover' //始终显示箭头
+        });
+    });
+    layui.config({
+        base: '../res/js/util/'
+    }).use(['element', 'laypage', 'jquery', 'menu'], function () {
+        element = layui.element, laypage = layui.laypage, $ = layui.$, menu = layui.menu;
+        laypage.render({
+            elem: 'demo'
+            , count: 70 //数据总数，从服务端得到
+        });
+        menu.init();
+    })
+    //     var r = window.confirm("确定退出吗？");
+    //     if(r==false){
+    //         e.preventDefault();
+    //     }else{
+    //         console.log("J");
+    //     }
+    // }
+</script>
+</body>
+</html>

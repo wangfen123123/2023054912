@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>在线心理咨询服务平台</title>
+    <link rel="stylesheet" type="text/css" href="../res/layui/css/layui.css" th:href="@{/res/layui/css/layui.css}">
+    <link rel="stylesheet" type="text/css" href="../res/css/main.css" th:href="@{/res/css/main.css}">
+    <link rel="stylesheet" href="../css/pgtest.css" th:href="@{/css/pgtest.css}">
+    <link rel="stylesheet" type="text/css" href="../res/css/index.css" th:href="@{/res/css/index.css}">
+    <script type="text/javascript" src="../js/axios.min.js" th:src="@{/js/axios.min.js}"></script>
+<!--    <script type="text/javascript" src="../js/jQuery" ></script>-->
+    <!--加载meta IE兼容文件-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!--引入公告模块-->
+<div th:replace="client/html/commons/bar::topbar"></div>
+<div style="height: 120px;width: 100%"></div>
+            <div class="item-box">
+                <div class="gif">
+                    <img src="../image/tt.gif" alt="">
+                </div>
+                <div class="mian">
+                    <div class="circle">
+                        <div class="circle_1"></div>
+                        <img src="../image/stars2.svg" alt="">
+
+                    </div>
+                    <div class="star">点击开始测试</div>
+                    <h1 style="color: white;letter-spacing: 10px;font-family: fangsong">欢迎来到在线心理测评</h1>
+                </div>
+                <div id="root" v-cloak>
+                    <form action="/defdfsdf" method="post" style="width: 100%">
+                        <div class="rds" th:each="topicList:${topicList}">
+                            <div class="bg">
+                                <div class="topic" th:text="${topicList.topicContent}">1、你愿意一个人独处吗?</div>
+                                <div class="select">
+                                    <div class="item_2"><input type="radio"
+                                                               th:name="${topicList.id}+${topicList.userOp}" value="5">是</div>
+                                    <div class="item_2"><input type="radio"
+                                                               th:name="${topicList.id}+${topicList.userOp}" value="3">不确定</div>
+                                    <div class="item_2"><input type="radio"
+                                                               th:name="${topicList.id}+${topicList.userOp}" value="1">不是</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="a">
+                                <span class="pagedown" @click="pgdown">
+                                    <!DOCTYPE svg
+                                        PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                                    <svg t="1682049584952" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                         xmlns="http://www.w3.org/2000/svg" p-id="53493"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200">
+                                        <path
+                                                d="M459.961011 716.805419v114.808727c0 30.281269-35.241148 46.921969-58.628077 27.662251-129.415625-106.530824-258.843893-213.059842-388.273967-319.603309-17.410149-14.339576-17.410149-41.008407 0-55.349789A4672009.166564 4672009.166564 0 0 0 401.332934 164.721796c23.38693-19.248881 58.628078-2.606375 58.628077 27.673089v114.810534h528.205401c19.790747 0 35.8372 16.046454 35.8372 35.8372v337.925599c0 19.790747-16.046454 35.8372-35.8372 35.837201H459.961011zM383.156947 384.000452v-104.836591L100.290336 512 383.156947 744.848782v-104.849234h564.040795V384.000452H383.156947z"
+                                                fill="#231815" p-id="53494" class="icon1"></path>
+                                    </svg>
+                                </span>
+                            <span class="page">{{pageCount+1}} / {{number}}</span>
+                            <span class="pageup" @click="pgup">
+                                    <!DOCTYPE svg
+                                        PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                                    <svg t="1682049576682" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                         xmlns="http://www.w3.org/2000/svg" p-id="53344"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200">
+                                        <path
+                                                d="M640.844859 640.001355H76.804064V384.000452h564.040795v-104.836591l282.870224 232.836139L640.844859 744.848782v-104.847427z m-76.804064-332.79413H35.835394C16.04826 307.207225 0 323.253679 0 343.044425v337.9256c0 19.790747 16.04826 35.8372 35.835394 35.8372h528.205401v114.808728c0 30.281269 35.241148 46.921969 58.61724 27.662251 129.428268-106.530824 258.858342-213.059842 388.273967-319.603309 17.420987-14.339576 17.420987-41.008407 0-55.34979-129.415625-106.529018-258.845699-213.058035-388.273967-319.601502-23.374286-19.248881-58.61724-2.606375-58.61724 27.673088v114.810534z"
+                                                fill="#231815" p-id="53345" class="icon1"></path>
+                                    </svg>
+                                </span>
+                        </div>
+                        <div class="button">
+<!--                            <button type="button" class="layui-btn layui-btn-lg layui-btn-primary layui-btn-radius" @click="scorequiz">开始</button>-->
+                            <input class="btns" type="button" name="submit" value="开始评分" @click="scorequiz">
+                        </div>
+                        <div class="result">
+<!--                            <div class="main">-->
+<!--                                <div class="main_1">-->
+<!--                                    <div class="left">-->
+<!--                                        <img th:src="@{/res/img/图片10.png}" />-->
+<!--                                    </div>-->
+<!--                                    <div class="middle">您好：<span style="color: brown;cursor: pointer">[[${session.loginName}]]</span></div>-->
+<!--                                    <div class="right">-->
+<!--                                        <img th:src="@{/res/img/图片10.png}" />-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="main_2">-->
+<!--                                  <div>测评结果</div>-->
+<!--                                   <div class="text" v-html="data['result']"></div>-->
+<!--                                </div>-->
+<!--                                <div class="main_3">-->
+<!--                                    <div style="border-radius: 20px;border: 1px solid purple;background-color: white;color: crimson;font-size: 1rem;font-family: fangsong;" v-html="data['describe']"></div>-->
+<!--                                    <input type="reset" class="btns_1" value="重新测试" >&ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div style="margin-bottom: 20px;border-bottom: 1px solid #f2f2f2;font-size: 0.7rem;color:#f2f2f2;">亲爱的：<span name="name" style="color: brown;cursor: pointer">[[${session.loginName}]]</span></div>
+                            <div class="main">
+                                <div class="left">
+                                    <div class="title">
+                                        <img src="../image/5.webp" alt="">
+                                        <div class="title_1">评价结果</div>
+                                    </div>
+                                    <div class="text" v-html="data['result']"></div>
+                                    <div class="title">
+                                        <img src="../image/5.webp" alt="">
+                                        <div class="title_1">关键词</div>
+                                    </div>
+                                    <div class="text" v-html="data['keyword']"></div>
+                                </div>
+                                <div class="right">
+                                    <div class="box1">
+                                        <div class="title">
+                                            <img src="../image/5.webp" alt="">
+                                            <div class="title_1">寄语</div>
+                                        </div>
+                                        <hr/>
+                                        <div class="box2" v-html="data['describe']"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reset button" @click="reset">
+                                <input type="reset" class="btns_1" value="重新测试" >
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+<script type="text/javascript" src="../res/layui/layui.js" th:src="@{/res/layui/layui.js}"></script>
+<script type="text/javascript" src="/webjars/jquery/3.3.1/jquery.min.js"
+        th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+<script type="text/javascript" src="../js/vue.js" th:src="@{/js/vue.js}"></script>
+<script type="text/javascript" src="../js/pgtest.js" th:src="@{/js/pgtest.js}"></script>
+<link rel="stylesheet" type="text/css" src="../css/font.css" th:src="@{/css/font.css}">
+<script type="text/javascript">
+    layui.config({
+        base: '../res/js/util/'
+    }).use(['element', 'laypage', 'form', 'menu'], function () {
+        element = layui.element, laypage = layui.laypage, form = layui.form, menu = layui.menu;
+        laypage.render({
+            elem: 'demo'
+            , count: 70 //数据总数，从服务端得到
+        });
+        menu.init();
+    })
+    setTimeout(()=>{
+        let height=document.body.clientHeight-120;
+        $(".item-box").css("height",height);
+    },500);
+    $(".star").mouseover(function(){
+        $(".circle").css({ border:" 1px solid gold", boxShadow:"5px 5px 60px gold inset"});
+        $(this).css("color","gold")
+    })
+    $(".star").mouseout(function(){
+        $(".circle").css({ border:"1px solid white", boxShadow:"none"});
+        $(this).css("color","white")
+    })
+    $(".star").click(function () {
+        $(".mian").slideUp();
+        $("#root").css("visibility","visible");
+    })
+</script>
+</body>
+</html>

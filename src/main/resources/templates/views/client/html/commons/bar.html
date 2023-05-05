@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../res/css/index.css" th:href="@{/res/css/index.css}">
+</head>
+<body>
+<div class="header" th:fragment="topbar">
+    <div class="menu-btn">
+        <div class="menu"></div>
+    </div>
+    <h1 class="logo">
+        <a href="/" style="height: 15vh">
+            <span>在线心理咨询服务平台</span>
+            <img src="../res/img/logo (2).svg" th:src="@{/res/img/logo (2).svg}" style="width: 150px">
+        </a>
+    </h1>
+    <div class="nav" style="color:#e3f6ff">
+        <a style="font-size: 18px" href="/" th:href="@{/}"><span>首页</span></a>
+        <a style="font-size: 18px" href="/article/list" th:href="@{/article/list}"><span>心理周刊</span></a>
+        <a style="font-size: 18px" href="/pgtestUi" th:href="@{/pgtestUi}"><span>心理评测</span></a>
+        <a style="font-size: 18px" href="/leacotsUi" th:href="@{/leacotsUi}"><span>留言</span></a>
+        <a style="font-size: 18px" href="/login" th:href="@{/login}" id="exit"><span>退出登录</span></a>
+    </div>
+    <ul class="layui-nav header-down-nav">
+        <li style="font-size: 18px" class="layui-nav-item"><a href="/" th:href="@{/}">首页</a></li>
+        <li style="font-size: 18px" class="layui-nav-item"><a href="/article/list" th:href="@{/article/list}" >文章</a>
+        </li>
+        <li style="font-size: 18px" class="layui-nav-item"><a href="/pgtestUi" th:href="@{/pgtestUi}" >心理评测</a></li>
+        <li style="font-size: 18px" class="layui-nav-item"><a href="/leacotsUi" th:href="@{/leacotsUi}" >留言</a></li>
+        <li style="font-size: 18px" class="layui-nav-item"><a href="/login" th:href="@{/login}" id="exit">退出登录</a></li>
+    </ul>
+    <p class="welcome-text">
+        <i class="layui-icon layui-icon-friends" style="color:brown;font-size: 20px;cursor: pointer;"><span name="name">[[${session.loginName}]]</span></i>
+        欢迎来到在线心理咨询~
+    </p>
+    <script>
+        let w = document.querySelector(".welcome-text");
+        let s = document.querySelector(".welcome-text span");
+        if(s.textContent===""){
+            w.style.display="none"
+        }else{
+            w.style.display="block"
+        }
+        let exit = document.getElementById("exit");
+        exit.onclick = function(e){
+            let r = window.confirm("确定退出吗？");
+            if(r==false){
+                e.preventDefault();
+            }
+        }
+    </script>
+</div>
+</body>
+</html>
